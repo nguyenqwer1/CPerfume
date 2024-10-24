@@ -1,0 +1,330 @@
+﻿<head>
+    <title>
+        Job Search
+    </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #2c3e50;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .search-bar {
+            background-color: #34495e;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .search-bar input, .search-bar select, .search-bar button {
+                margin: 0 10px;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+            }
+
+            .search-bar input {
+                flex: 1;
+            }
+
+            .search-bar button {
+                background-color: #3498db;
+                color: white;
+                cursor: pointer;
+            }
+
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+
+        .left-column {
+            flex: 3;
+            margin-right: 20px;
+        }
+
+        .right-column {
+            flex: 1;
+        }
+
+        .job-listing, .job-category {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .job-listing h2, .job-category h2 {
+                margin-top: 0;
+            }
+
+        .job-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+            .job-item:last-child {
+                border-bottom: none;
+            }
+
+            .job-item img {
+                width: 50px;
+                height: 50px;
+                margin-right: 20px;
+            }
+
+        .job-details {
+            flex: 1;
+        }
+
+            .job-details h3 {
+                margin: 0;
+                font-size: 16px;
+            }
+
+            .job-details p {
+                margin: 5px 0;
+                color: #7f8c8d;
+            }
+
+        .apply-button {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .job-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .job-category li {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+
+            .job-category li a {
+                color: #3498db;
+                text-decoration: none;
+            }
+
+                .job-category li a:hover {
+                    text-decoration: underline;
+                }
+
+            .job-category li span {
+                color: #7f8c8d;
+            }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Tìm việc làm</h1>
+    </div>
+
+    <div class="search-bar">
+        <form method="get" action="/Candidate/Index" class="form-inline">
+            <input type="text" name="keyword" placeholder="Nhập kỹ năng, công việc,..." />
+            <select name="location">
+                <option value="">Tất cả địa điểm</option>
+                <option value="Hà Nội">Hà Nội</option>
+                <option value="Đà Nẵng">Đà Nẵng</option>
+                <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+            </select>
+            <button type="submit"><i class="fas fa-search"></i> Tìm kiếm</button>
+        </form>
+    </div>
+    <div class="container">
+        <div class="left-column">
+            <div class="job-listing">
+                <h2>
+                    TUYỂN GẤP
+                </h2>
+                <div class="row">
+                    @foreach (var job in Model)
+                    {
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title font-weight-bold">@job.Title</h5>
+                                    <p class="card-text">
+                                        <strong>Mô tả:</strong> @job.Description <br />
+                                        <strong>Lương:</strong> @string.Format("{0:N0} VND", job.Salary )<br />
+                                        <strong>Địa điểm:</strong> @job.Location "<br />
+                                        <strong>Ngày đăng:</strong> @job.JobDate?.ToString("dd/MM/yyyy") "<br />
+                                        <strong>Giờ làm:</strong>
+                                        @job.StartTime?.ToString(@"hh\:mm") 
+                                        @job.EndTime?.ToString(@"hh\:mm") 
+                                    </p>
+                                    <div class="mt-auto">
+                                        <a href="@Url.Action("JobDetails", "Candidate", new { id = job.JobId })"
+                                           class="btn btn-outline-primary btn-block">
+                                            <i class="fas fa-info-circle"></i> Xem chi tiết
+                                        </a>
+                                        <a href="@Url.Action("JobDetails", "Candidate", new { id = job.JobId })"
+                                           class="btn btn-success btn-block mt-2">
+                                            <i class="fas fa-clipboard-check"></i> Apply Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="job-item">
+                    <img alt="Company logo" height="50" src="https://storage.googleapis.com/a1aa/image/rfC5KSDqAfkZwEy9RUj9Ionpb6Dq7xRqYQBCFp5cE086EUpTA.jpg" width="50" />
+                    <div class="job-details">
+                        <h3>
+                            Fullstack .NET Developer (Angular/React)
+                        </h3>
+                        <p>
+                            Orient Software |
+                            <i class="fas fa-map-marker-alt">
+                            </i>
+                            Hà Nội
+                        </p>
+                        <p>
+                            <i class="fas fa-code">
+                            </i>
+                            .NET
+                            <i class="fas fa-money-bill-wave">
+                            </i>
+                            15triệu - 35 triệu
+                            <i class="fas fa-calendar-alt">
+                            </i>
+                            Hạn nộp: 31/02/2020
+                        </p>
+                    </div>
+                    <button class="apply-button">
+                        Apply Now
+                    </button>
+                </div>
+                <div class="job-item">
+                    <img alt="Company logo" height="50" src="https://storage.googleapis.com/a1aa/image/rfC5KSDqAfkZwEy9RUj9Ionpb6Dq7xRqYQBCFp5cE086EUpTA.jpg" width="50" />
+                    <div class="job-details">
+                        <h3>
+                            Frontend Developer (JavaScript, ReactJS)
+                        </h3>
+                        <p>
+                            mgm technology |
+                            <i class="fas fa-map-marker-alt">
+                            </i>
+                            Đà Nẵng
+                        </p>
+                        <p>
+                            <i class="fas fa-code">
+                            </i>
+                            JavaScript, ReactJS
+                            <i class="fas fa-money-bill-wave">
+                            </i>
+                            15triệu - 35 triệu
+                            <i class="fas fa-calendar-alt">
+                            </i>
+                            Hạn nộp: 31/12/2019
+                        </p>
+                    </div>
+                    <button class="apply-button">
+                        Apply Now
+                    </button>
+                </div>
+                <div class="job-item">
+                    <img alt="Company logo" height="50" src="https://storage.googleapis.com/a1aa/image/rfC5KSDqAfkZwEy9RUj9Ionpb6Dq7xRqYQBCFp5cE086EUpTA.jpg" width="50" />
+                    <div class="job-details">
+                        <h3>
+                            IVI System Test Engineer
+                        </h3>
+                        <p>
+                            NVG TECHNOLOGY |
+                            <i class="fas fa-map-marker-alt">
+                            </i>
+                            Đà Nẵng
+                        </p>
+                        <p>
+                            <i class="fas fa-code">
+                            </i>
+                            .NET
+                            <i class="fas fa-money-bill-wave">
+                            </i>
+                            15triệu - 35 triệu
+                            <i class="fas fa-calendar-alt">
+                            </i>
+                            Hạn nộp: 31/12/2019
+                        </p>
+                    </div>
+                    <button class="apply-button">
+                        Apply Now
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="right-column">
+            <div class="job-category">
+                <h2>
+                    NGÀNH NGHỀ
+                </h2>
+                <ul>
+                    <li>
+                        <a href="#">
+                            Lập trình viên
+                        </a>
+                        <span>
+                            (1100)
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Nhân viên kiểm thử
+                        </a>
+                        <span>
+                            (230)
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Kỹ sư cầu nối
+                        </a>
+                        <span>
+                            (110)
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Designer
+                        </a>
+                        <span>
+                            (2300)
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Xem thêm
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="job-category">
+                <img alt="Advertisement" height="250" src="https://storage.googleapis.com/a1aa/image/PfriQ4oHAaW4BCJa9JFdDnoPH7BhHYyU3J58duDW8wPeEUpTA.jpg" width="300" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

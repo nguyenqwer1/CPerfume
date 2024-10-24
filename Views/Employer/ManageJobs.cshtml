@@ -1,0 +1,31 @@
+﻿@model List<recruitment.Models.Job>
+
+<h2 class="text-center">Danh Sách Công Việc</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tiêu Đề</th>
+            <th>Mức Lương</th>
+            <th>Địa Điểm</th>
+            <th>Trạng Thái</th>
+            <th>Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var job in Model)
+        {
+            <tr>
+                <td>@job.Title</td>
+                <td>@string.Format("{0:N0} VND", job.Salary)</td>
+                <td>@job.Location</td>
+                <td>@job.Status</td>
+                <td>
+                    <a href="/Employer/DeleteJob/@job.JobId" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="/Employer/CreateJob">Đăng Tin Mới</a>

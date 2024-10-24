@@ -1,0 +1,8 @@
+D:\project .net\recruitment\obj\Debug\net6.0\recruitment.csproj.AssemblyReference.cache
+D:\project .net\recruitment\obj\Debug\net6.0\recruitment.GeneratedMSBuildEditorConfig.editorconfig
+D:\project .net\recruitment\obj\Debug\net6.0\recruitment.AssemblyInfoInputs.cache
+D:\project .net\recruitment\obj\Debug\net6.0\recruitment.AssemblyInfo.cs
+D:\project .net\recruitment\obj\Debug\net6.0\recruitment.csproj.CoreCompileInputs.cache
+D:\project .net\recruitment\obj\Debug\net6.0\recruitment.MvcApplicationPartsAssemblyInfo.cache
+D:\project .net\recruitment\obj\Debug\net6.0\recruitment.RazorAssemblyInfo.cache
+D:\project .net\recruitment\obj\Debug\net6.0\recruitment.RazorAssemblyInfo.cs

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication7</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Layout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication7.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="navbar-left">
+                <a href="#" class="logo">Tech<span>Jobs.</span></a>
+
+
+            </div>
+            <div class="navbar-right">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#">Đăng Ký</a>
+                <a href="#">Đăng Nhập</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">VI <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#">EN</a>
+                        <a href="#">VI</a>
+                    </div>
+                </div>
+                <a href="#" class="button">Nhà Tuyển Dụng</a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <footer>
+                <div class="header">
+                    <div class="left">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HỖ TRỢ NHÀ TUYỂN DỤNG:</span>
+                        <i class="fas fa-phone"></i>
+                        <span>0123.456.789</span>
+                    </div>
+                    <div class="right">
+                        <span>Đăng ký nhận bản tin việc làm</span>
+                        <input type="text" placeholder="Nhập email của bạn">
+                        <button><i class="fas fa-envelope"></i></button>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="column">
+                        <h3>ABOUT</h3>
+                        <p>Discover the best way to find houses, condominiums, apartments and HDBs for sale and rent in Singapore with JobsOnline, Singapore's Fastest Growing Jobs Portal.</p>
+                        <ul>
+                            <li><i class="fas fa-phone"></i>+123 456 7890</li>
+                            <li><i class="fas fa-envelope"></i>hello@123.com</li>
+                            <li><i class="fas fa-map-marker-alt"></i>33 Xô Viết Nghệ Tĩnh, Đà Nẵng</li>
+                        </ul>
+                    </div>
+
+
+                    <div class="column">
+                        <h3>TẤT CẢ HÌNH THỨC</h3>
+                        <ul>
+                            <li>Nhân viên chính thức</li>
+                            <li>Nhân viên bán thời gian</li>
+                            <li>Freelancer</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>TẤT CẢ TỈNH THÀNH</h3>
+                        <ul>
+                            <li>Hồ Chí Minh</li>
+                            <li>Hà Nội</li>
+                            <li>Đà Nẵng</li>
+                            <li>Buôn Ma Thuột</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer bottom">
+                    <p>Copyright © 2024 <a href="#">D-Job</a>. All Right Reserved.</p>
+                </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

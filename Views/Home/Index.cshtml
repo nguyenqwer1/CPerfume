@@ -1,0 +1,31 @@
+﻿@model List<recruitment.Models.Job>
+
+@if (Model == null)
+{
+    <h3 class="text-center text-danger">Lỗi: Dữ liệu không được tải đúng cách.</h3>
+}
+else if (!Model.Any())
+{
+    <h3 class="text-center">Không có công việc nào được tìm thấy.</h3>
+}
+else
+{
+    <div class="row">
+        @foreach (var job in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@job.Title</h5>
+                        <p class="card-text">
+                            <strong>Địa điểm:</strong> @job.Location<br />
+                            <strong>Mức lương:</strong> @string.Format("{0:C}", job.Salary ?? 0)<br />
+                            <strong>Ngày đăng:</strong> @job.JobDate?.ToString("dd/MM/yyyy")
+                        </p>
+                        <a href="@Url.Action("JobDetails", "Candidate", new { id = job.JobId })" class="btn btn-primary">Chi Tiết</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
